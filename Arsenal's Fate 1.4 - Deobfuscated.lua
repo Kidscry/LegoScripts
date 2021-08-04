@@ -1,5 +1,7 @@
--- Arsenal's Fate
--- Version: 1.5 [Remastered]
+--[[
+  - Deobfuscated by: Kidscry#2257
+  - Obfuscated by: Xantro's Obfuscator
+]]
 
 local Main = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
