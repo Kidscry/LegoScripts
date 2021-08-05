@@ -2,10 +2,7 @@
   - Deobfuscated by: Kidscry#2257
   - Obfuscated by: Xantro's Obfuscator
 ]]
---[[
-  - Deobfuscated by: Kidscry#2257
-  - Obfuscated by: Xantro's Obfuscator
-]]
+
 local Template = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
