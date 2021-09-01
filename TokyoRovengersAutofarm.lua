@@ -7,7 +7,7 @@ Change logs:
 8/31/2021
   * Switched to PSU obfuscation
   + Slightly Faster Execution
-  + The script can now be run without a loadstring, which was taken from Hattori's hub source when I was taking the UI.
+  + The script can now be run without a loadstring, which was taken from Hattori's hub source when taken from the UI.
 
 Feature Updates - Maybe
  - Kill Aura
