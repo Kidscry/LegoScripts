@@ -5,7 +5,7 @@ Game Link: https://www.roblox.com/games/6914337402/2x-Tokyo-Rovengers?
 Change logs:
 
 9/02/2021
-  * Extra precaution to various game detection methods. 
+  * Extra precaution to various game detection methods. -- https://raw.githubusercontent.com/Kidscry/Utility/main/AdditionalProtection.lua
   + Discord Setclipboard
 ]]
 
