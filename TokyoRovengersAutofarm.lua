@@ -1,5 +1,4 @@
 --[[
-Discord: Kidscry#0964
 Game Link: https://www.roblox.com/games/6914337402/2x-Tokyo-Rovengers?
 
 Change logs:
