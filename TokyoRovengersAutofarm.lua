@@ -1,5 +1,5 @@
 --[[
-Change logs: 9/04/2021
+Change logs: 9/06/2021
   * Switched to Jan's UI
   * The game lags as a result of the previous update; your stats will refresh, but with a delay.
 
