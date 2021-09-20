@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("Wait For A Update")
+game.Players.LocalPlayer:Kick("Kidscry#0964 - Wait for a Updoot : )")
