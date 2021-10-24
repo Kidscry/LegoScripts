@@ -6,7 +6,7 @@ Change Logs:
     * Removed 'Infinite Health'
     * Anti AFK Executed Automatically
     * Fixed 'Tokyo Rovenger' Folder
-    * Added Synapse Indentifer
+    * Added Synapse Identifer
 
 10/05/21
     * Changed 'Safefarm' Location (Due to Repeated Death when Toggled)
