@@ -1,0 +1,1 @@
+return game:GetService('Players')LocalPlayer:Kick("Trying to find an obfuscator - Kidscry#0964 \n new loadstring")
