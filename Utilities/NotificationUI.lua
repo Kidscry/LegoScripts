@@ -1,4 +1,6 @@
 --[[
+https://robloxscripts.com/wp-content/uploads/2022/04/download-2-3-480x233.png
+
 local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
 
 Notification.new("error", "Error Heading", "Error body message.") -- Args(<string> Type, <string> Heading, <string> Body, <boolean?> AutoRemoveNotif, <number?> AutoRemoveTime, <function?> OnCloseFunction)
