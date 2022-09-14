@@ -1,4 +1,4 @@
-loadstring(game:HttpGet('https://raw.githubusercontent.com/jqww/JanUI/main/src.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Kidscry/Releases/main/Utilities/JUI/src.lua'))()
 -- [Legit Tab UI] ------------------------------------------------------------------------------------------------------------------------------------------------------------
 local LegitTab = library:AddTab("Legit");
 local LegitColunm1 = LegitTab:AddColumn();
