@@ -2,7 +2,7 @@
 PUBLIC RELEASED VER.
 LINK : https://www.roblox.com/games/5840952016/x10-EVENT-Tapping-Legacy
 
-Loadstring : loadstring(game:HttpGet('hhttps://raw.githubusercontent.com/Kidscry/Releases/main/Scripts/Tapping_Legacy_Public.lua'))()
+Loadstring : loadstring(game:HttpGet('https://raw.githubusercontent.com/Kidscry/Releases/main/Scripts/Tapping_Legacy_Public.lua'))()
 
 Note: For Fun!
 ]]
