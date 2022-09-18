@@ -2,8 +2,9 @@
 PUBLIC RELEASED VER.
 LINK : https://www.roblox.com/games/5840952016/x10-EVENT-Tapping-Legacy
 
-Note:
-For Fun!
+Loadstring : loadstring(game:HttpGet('hhttps://raw.githubusercontent.com/Kidscry/Releases/main/Scripts/Tapping_Legacy_Public.lua'))()
+
+Note: For Fun!
 ]]
 
 --Boronide™ Premium Obfuscation, v0.6.3
