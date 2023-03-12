@@ -1,7 +1,7 @@
 
 # Universal Triggerbot 
 
-This software program is designed to automatically shoot at enemies when they are within your crosshairs, thereby increasing your accuracy and reaction time. 
+This script is designed to automatically shoot at enemies when they are within your crosshairs, thereby increasing your accuracy and reaction time. 
 
 
 ## Screenshots
