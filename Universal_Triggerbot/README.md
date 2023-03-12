@@ -1,0 +1,10 @@
+
+# Universal Triggerbot 
+
+Universal triggerbot is a script designed to assist in shooting at enemies in first-person shooter games. The triggerbot works by constantly monitoring your field of view and automatically shooting when the enemy is within your crosshair. This type of tool will give you an advantage over your opponents by increasing your accuracy and reaction time. 
+
+
+## Screenshots
+
+![App Screenshot](https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Triggerbot/v1.png)
+
