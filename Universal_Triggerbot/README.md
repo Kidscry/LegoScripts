@@ -8,11 +8,6 @@ This script is designed to automatically shoot at enemies when they are within y
 
 ![App Screenshot](https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Triggerbot/v1.png)
 
-
-## Loader
-
-Loader Loadstring
-
 ```bash
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Utilities/UI.lua"))();
 ```
