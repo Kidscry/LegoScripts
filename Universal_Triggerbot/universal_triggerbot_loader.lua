@@ -1,8 +1,3 @@
---[[
-	code generated using luamin.js, Herrtt#3868
---]]
-
-
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Utilities/UI.lua"))();
 
 local Players = game:GetService("Players")
