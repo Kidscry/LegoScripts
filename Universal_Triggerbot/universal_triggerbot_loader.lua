@@ -53,6 +53,7 @@ RunService.RenderStepped:Connect(OnRenderStepped)
 
 local Main = library:CreateWindow("MAIN")
 local TriggerbotToggle = Main:AddToggle({text = "Triggerbot", flag = "Triggerbot"})
+
 local Settings = library:CreateWindow("CONFIGURATIONS")
 
 Settings:AddBind({ 
@@ -84,8 +85,7 @@ Credits:AddLabel({text='Kidscry - Script'});
 Credits:AddLabel({text='Version 1.2'});
 Credits:AddLabel({text='Updated 3/12/23'});
 Credits:AddDivider();
-Credits:AddButton({text = 'Unload script', callback = function() library.base:ClearAllChildren();
-	library.base:Destroy() end});
+Credits:AddButton({text = 'Unload script', callback = function() shared._unload() end});
 Credits:AddDivider();
 Credits:AddBind({text = 'Menu toggle', key = Enum.KeyCode.Backspace, callback = function() library:Close() end})
 
