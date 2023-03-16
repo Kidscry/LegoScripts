@@ -108,8 +108,6 @@ Settings:AddBind({
 end;
 
 })
-
-
 --// Create Credits window with information
 local Credits = library:CreateWindow("CREDITS")
 Credits:AddLabel({text='Jan - UI library'});
