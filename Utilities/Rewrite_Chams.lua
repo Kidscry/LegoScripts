@@ -4,7 +4,8 @@
 \ \  _"-.  \ \ \  \ \ \/\ \ \ \___  \  \ \ \____  \ \  __<   \ \____ \  
  \ \_\ \_\  \ \_\  \ \____-  \/\_____\  \ \_____\  \ \_\ \_\  \/\_____\ 
   \/_/\/_/   \/_/   \/____/   \/_____/   \/_____/   \/_/ /_/   \/_____/ 
-  - Rewrite: Introvert1337 Chams.lua
+  - Rewrite of : Introvert1337 Chams.lua
+    Loader : loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Utilities/Rewrite_Chams.lua"))();
 ]]
 -- // Services
 local Players = game:GetService("Players")
