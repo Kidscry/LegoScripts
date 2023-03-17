@@ -23,10 +23,10 @@ local ChamsSettings = {
     EnemyOutlineColor = Color3.new(1, 1, 1),
     TeamFillColor = Color3.new(0, 1, 0),
     EnemyFillColor = Color3.new(1, 0, 0),
-    FillTransparency = 0,
+    FillTransparency = 0.75,
     OutlineTransparency = 0,
     UseTeamColors = false,
-    ShowTeam = true,
+    ShowTeam = false,
 }
 
 local Highlights = {}
@@ -91,4 +91,3 @@ RunService.Stepped:Connect(function()
         Highlight.FillColor = ChamsSettings.UseTeamColors and Player.TeamColor or (IsSameTeam and ChamsSettings.TeamFillColor or ChamsSettings.EnemyFillColor)
     end
 end)
-
