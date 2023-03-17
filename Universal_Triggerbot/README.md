@@ -12,8 +12,8 @@ This script is designed to automatically shoot at enemies when they are within y
 ```bash
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Triggerbot/universal_triggerbot_loader.lua"))();
 ```
+# Universal Chams 
 ```bash
-Chams
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Utilities/Rewrite_Chams.lua"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Rewrite_Chams/Rewrite_Chams.lua"))();
 ```
 Demonstration: https://www.youtube.com/watch?v=QkEJDe2hJNE
