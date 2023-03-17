@@ -4,15 +4,18 @@
 \ \  _"-.  \ \ \  \ \ \/\ \ \ \___  \  \ \ \____  \ \  __<   \ \____ \  
  \ \_\ \_\  \ \_\  \ \____-  \/\_____\  \ \_____\  \ \_\ \_\  \/\_____\ 
   \/_/\/_/   \/_/   \/____/   \/_____/   \/_____/   \/_/ /_/   \/_____/ 
-  - Rewrite of : Introvert1337 Chams.lua
+  - Rewrite of (mild) : Introvert1337 Chams.lua
+    Note: Will Significantly Improve Soon.
     Loader : loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Rewrite_Chams/Rewrite_Chams.lua"))();
 ]]
--- // Services
-local Players = game:GetService("Players")
-local CoreGui = game:GetService("CoreGui")
-local RunService = game:GetService("RunService")
+--// Services
 
--- // Variables and Settings
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
+
+--// Variables and Settings
+
 local LocalPlayer = Players.LocalPlayer
 
 local ChamsSettings = {
@@ -28,86 +31,64 @@ local ChamsSettings = {
 
 local Highlights = {}
 local Connections = {}
-local TeamColors = {}
 
--- // Functions
-local function removeCham(player)
-    local highlight = Highlights[player]
+--// Functions
 
-    if highlight then
-        highlight:Destroy()
-        Highlights[player] = nil
+local function RemoveChams(Player)
+    local Highlight = Highlights[Player]
+    if Highlight then
+        Highlight:Destroy()
+        Highlights[Player] = nil
     end
 end
 
-local function applyChams(player)
-    local character = player.Character
-    if not character then
-        -- // Wait Character Load
-        character = player.CharacterAdded:Wait()
+local function ApplyChams(Player)
+    local function OnCharacterAdded(Character)
+        local Highlight = Instance.new("Highlight")
+        Highlight.Adornee = Character
+        Highlight.Parent = CoreGui
+        Highlight.OutlineTransparency = ChamsSettings.OutlineTransparency
+        Highlight.FillTransparency = ChamsSettings.FillTransparency
+        Highlights[Player] = Highlight
     end
-
-    -- // Create Highlight Instance
-    local highlight = Instance.new("Highlight")
-    highlight.Adornee = character
-    highlight.Parent = CoreGui
-    highlight.OutlineTransparency = ChamsSettings.OutlineTransparency
-    highlight.FillTransparency = ChamsSettings.FillTransparency
-    Highlights[player] = highlight
-
-    -- // Update Player highlight Color
-    updateChamColors(player)
-
-    -- // Listens Changes made to the Player
-    Connections[player] = {
-        CharacterAdded = player.CharacterAdded:Connect(function(newCharacter)
-            -- // Wait New Character to Load To update
-            task.spawn(function()
-                character = newCharacter
-                highlight.Adornee = character
-                updateChamColors(player)
-            end)
-        end),
-        CharacterRemoving = player.CharacterRemoving:Connect(function()
-            -- // Remove Player Highlight
-            removeCham(player)
-        end)
-    }
+    
+    local Character = Player.Character
+    if Character then
+        task.spawn(OnCharacterAdded, Character)
+    end
+    
+    Connections.CharacterAdded[Player] = Player.CharacterAdded:Connect(OnCharacterAdded)
+    Connections.CharacterRemoving[Player] = Player.CharacterRemoving:Connect(function()
+        RemoveChams(Player)
+    end)
 end
 
-local function updateChamColors(player)
-    local highlight = Highlights[player]
-    local isSameTeam = player.Team == LocalPlayer.Team
-    highlight.Enabled = ChamsSettings.ShowTeam or not isSameTeam
-    highlight.OutlineColor = isSameTeam and ChamsSettings.TeamOutlineColor or ChamsSettings.EnemyOutlineColor
-    highlight.FillColor = ChamsSettings.UseTeamColors and TeamColors[player] or (isSameTeam and ChamsSettings.TeamFillColor or ChamsSettings.EnemyFillColor)
-end
+--// Initialization
 
--- // Main Extra Sensory Perception
-for _, player in ipairs(Players:GetPlayers()) do
-    if player ~= LocalPlayer then
-        task.spawn(applyChams, player)
+for _, Player in ipairs(Players:GetPlayers()) do
+    if Player ~= LocalPlayer then
+        task.spawn(ApplyChams, Player)
     end
 end
 
--- // Listen for New Players
-Players.PlayerAdded:Connect(function(player)
-    if player ~= LocalPlayer then
-        task.spawn(applyChams, player)
-        TeamColors[player] = player.TeamColor
+Connections.PlayerAdded = Players.PlayerAdded:Connect(ApplyChams)
+
+Players.PlayerRemoving:Connect(function(Player)
+    local CharacterAddedConnection = Connections.CharacterAdded[Player]
+    local CharacterRemovingConnection = Connections.CharacterRemoving[Player]
+    if CharacterAddedConnection and CharacterRemovingConnection then
+        CharacterAddedConnection:Disconnect()
+        CharacterRemovingConnection:Disconnect()
+    end
+    RemoveChams(Player)
+end)
+
+RunService.Stepped:Connect(function()
+    for Player, Highlight in pairs(Highlights) do
+        local IsSameTeam = Player.Team == LocalPlayer.Team
+        Highlight.Enabled = ChamsSettings.ShowTeam or not IsSameTeam
+        Highlight.OutlineColor = IsSameTeam and ChamsSettings.TeamOutlineColor or ChamsSettings.EnemyOutlineColor
+        Highlight.FillColor = ChamsSettings.UseTeamColors and Player.TeamColor or (IsSameTeam and ChamsSettings.TeamFillColor or ChamsSettings.EnemyFillColor)
     end
 end)
 
--- // Listns for Players Leaving
-Players.PlayerRemoving:Connect(function(player)
-    local connection = Connections[player]
-    if connection then
-        connection.CharacterAdded:Disconnect()
-        connection.CharacterRemoving:Disconnect()
-    end
-    removeCham(player)
-    TeamColors[player] = nil
-end)
-
--- // Update Chams Per Frame
-RunService.RenderStepped:Connect(updateChams)
