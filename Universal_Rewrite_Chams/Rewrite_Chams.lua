@@ -20,14 +20,15 @@ Changelogs:
 
      - Removed Unused Connections Table Keys
 ]]
---// Services
+-- // Services
 local Players = game:GetService("Players");
 local RunService = game:GetService("RunService");
 local CoreGui = game:GetService("CoreGui");
 
--- Variables and Settings
+-- // Vars
 local LocalPlayer = Players.LocalPlayer;
 
+-- // Chams Settings
 local ChamsSettings = {
     TeamOutlineColor = Color3.new(1, 1, 1);
     EnemyOutlineColor = Color3.new(1, 1, 1);
@@ -38,25 +39,31 @@ local ChamsSettings = {
     UseTeamColors = false;
     ShowTeam = false;
 };
-
+-- // Highlight Objects
 local Highlights = {};
+-- // Event Connections
 local Connections = {
     PlayerAdded = nil;
     CharacterAdded = {};
     CharacterRemoving = {};
 };
 
--- Functions
-local function RemoveChams(Player)
+-- // Remove Chams Function
+-- // Remove Highlight
+local function RemoveChams(Player) 
     local Highlight = Highlights[Player];
     if Highlight then
+  -- // Destroy Highlight Object
         Highlight:Destroy();
+  -- // Removes Remove from Highlight Table
         Highlights[Player] = nil;
     end;
 end;
-
+-- // Apply highlight Function
 local function ApplyChams(Player)
+ -- // Listens for Players joining the Game
     local function OnCharacterAdded(Character)
+  -- // Create Highlight Object
         local Highlight = Instance.new("Highlight");
         Highlight.Adornee = Character;
         Highlight.Parent = CoreGui;
@@ -64,35 +71,40 @@ local function ApplyChams(Player)
         Highlight.FillTransparency = ChamsSettings.FillTransparency;
         Highlights[Player] = Highlight;
     end;
-
+-- // Obtain Player Character
     local Character = Player.Character;
     if Character then
+  -- // Apply Highlight
         OnCharacterAdded(Character);
     end;
-
+-- // Apply to New Players
     Connections.CharacterAdded[Player] = Player.CharacterAdded:Connect(function(Character)
         OnCharacterAdded(Character);
     end);
-
+-- // Remove Highlights When Players leave
     Connections.CharacterRemoving[Player] = Player.CharacterRemoving:Connect(function()
         RemoveChams(Player);
     end);
 end;
 
--- Initialization
+-- // Initialization
+-- // Obtain Players
 for _, Player in ipairs(Players:GetPlayers()) do
     if Player ~= LocalPlayer then
+  -- // Apply Highlights to All Players (Exception: Client)
         pcall(ApplyChams, Player);
     end;
 end;
 
+-- // Apply Highlights to Player Joined (Exception: Client)
 Connections.PlayerAdded = Players.PlayerAdded:Connect(function(Player)
     if Player ~= LocalPlayer then
         pcall(ApplyChams, Player);
     end;
 end);
-
+-- // Connects Function Event (Player Leave)
 Players.PlayerRemoving:Connect(function(Player)
+  -- // Disconnect Connections & Remove Chams
     local CharacterAddedConnection = Connections.CharacterAdded[Player];
     local CharacterRemovingConnection = Connections.CharacterRemoving[Player];
     if CharacterAddedConnection and CharacterRemovingConnection then
@@ -101,7 +113,7 @@ Players.PlayerRemoving:Connect(function(Player)
     end;
     RemoveChams(Player);
 end);
-
+-- // Table Function to Disconnect All Connections & Remove all Highlights
 local ConnectionManager = {
     DisconnectAll = function()
         Connections.PlayerAdded:Disconnect();
@@ -116,6 +128,7 @@ local ConnectionManager = {
     end;
 };
 
+-- // Connects Function to Update Chams Every Frame
 RunService.Heartbeat:Connect(function()
     for Player, Highlight in pairs(Highlights) do
         local IsSameTeam = Player.Team == LocalPlayer.Team;
