@@ -9,7 +9,10 @@
     Loader : loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Rewrite_Chams/Rewrite_Chams.lua"))();
 
 Changelogs:
-
+03/18/23
+     + Added Check to Apply Highlights to non-team players
+        ! Revised the script to only apply chams to non-teammates, even in non-team-based games.(Universal)
+        ! Chams Setting Issues: Some errors in Configuration
 03/17/23
      * Increased highlights Update Frequency and Table Iteration Performance.
      * Changed to 'function()' notation for better compatibility.
@@ -130,13 +133,32 @@ local ConnectionManager = {
 
 -- // Connects Function to Update Chams Every Frame
 RunService.Heartbeat:Connect(function()
-    for Player, Highlight in pairs(Highlights) do
-        local IsSameTeam = Player.Team == LocalPlayer.Team;
-        Highlight.Enabled = ChamsSettings.ShowTeam or not IsSameTeam;
-        Highlight.OutlineColor = IsSameTeam and ChamsSettings.TeamOutlineColor or ChamsSettings.EnemyOutlineColor;
-        Highlight.FillColor = ChamsSettings.UseTeamColors and Player.TeamColor or (IsSameTeam and ChamsSettings.TeamFillColor or ChamsSettings.EnemyFillColor);
+  -- //
+    local enemyFound = false;
+  -- //
+    for player, highlight in pairs(Highlights) do
+   -- //
+        if player.Team ~= LocalPlayer.Team then
+    -- //
+            enemyFound = true;
+            highlight.Enabled = true;
+            highlight.OutlineColor = ChamsSettings.EnemyOutlineColor;
+            highlight.FillColor = ChamsSettings.EnemyFillColor;
+        else
+    -- //
+            highlight.Enabled = false;
+        end;
+    end;
+  -- //
+    if not enemyFound then
+        for _, highlight in pairs(Highlights) do
+            highlight.Enabled = true;
+            highlight.OutlineColor = ChamsSettings.TeamOutlineColor;
+            highlight.FillColor = ChamsSettings.TeamFillColor;
+        end;
     end;
 end);
 
 return ConnectionManager;
+
 
