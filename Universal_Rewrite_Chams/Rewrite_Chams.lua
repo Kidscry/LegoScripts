@@ -15,7 +15,7 @@ Changelogs:
      * Changed to 'function()' notation for better compatibility.
      * Improved table iteration performance with 'ipairs' instead of 'pairs'.
      * Replaced 'table.getn(table)' with '#table' for better performance.
-
+     * Added 'Connection Manager' to handle event management & Code Maintainability .
      + Added error handling with 'PCall'
 
      - Removed Unused Connections Table Keys
@@ -102,6 +102,20 @@ Players.PlayerRemoving:Connect(function(Player)
     RemoveChams(Player);
 end);
 
+local ConnectionManager = {
+    DisconnectAll = function()
+        Connections.PlayerAdded:Disconnect();
+        for _, Connection in pairs(Connections.CharacterAdded) do
+            Connection:Disconnect();
+        end;
+        for _, Connection in pairs(Connections.CharacterRemoving) do
+            Connection:Disconnect();
+        end;
+        Connections = nil;
+        Highlights = nil;
+    end;
+};
+
 RunService.Heartbeat:Connect(function()
     for Player, Highlight in pairs(Highlights) do
         local IsSameTeam = Player.Team == LocalPlayer.Team;
@@ -110,4 +124,6 @@ RunService.Heartbeat:Connect(function()
         Highlight.FillColor = ChamsSettings.UseTeamColors and Player.TeamColor or (IsSameTeam and ChamsSettings.TeamFillColor or ChamsSettings.EnemyFillColor);
     end;
 end);
+
+return ConnectionManager;
 
