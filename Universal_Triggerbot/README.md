@@ -8,9 +8,12 @@ This script is designed to automatically shoot at enemies when they are within y
 
 ![App Screenshot](https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Triggerbot/v1.png)
 
-
 ```bash
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Triggerbot/universal_triggerbot_loader.lua"))();
+```
+# Aimblox Triggerbot
+```bash
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kidscry/Releases/main/Universal_Triggerbot/Aimblox_Triggerbot_Loader.lua"))();
 ```
 # Universal Chams 
 ```bash
